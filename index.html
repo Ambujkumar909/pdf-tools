@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Tools</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom CSS styles */
+        .contact-info {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px; /* Small font size */
+            font-family: 'Roboto', sans-serif; /* Roboto font */
+        }
+        .contact-info a {
+            color: #007bff; /* Bootstrap primary color for links */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5 mb-4">Welcome to PDF TOOLS</h1>
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h2 class="card-title">PDF Splitter</h2>
+                        <p class="card-text">Split your PDF files into individual pages.</p>
+                        <a href="/split" class="btn btn-primary">Enter</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h2 class="card-title">PDF Merger</h2>
+                        <p class="card-text">Merge multiple PDF files into one.</p>
+                        <a href="/merge" class="btn btn-primary">Enter</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h2 class="card-title">PDF Converter</h2>
+                        <p class="card-text">Convert PDF files to various formats (Word, Excel, PowerPoint, etc.).</p>
+                        <a href="/convert" class="btn btn-primary">Enter</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Information Section -->
+        <div class="contact-info">
+            <p><strong>Name:</strong> Ambuj Kumar</p>
+            <p><strong>Email:</strong> <a href="mailto:ambujkr8@gmail.com">ambujkr8@gmail.com</a></p>
+            <p>For any queries, please feel free to email us.</p>
+        </div>
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

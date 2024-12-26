@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Tools - Results</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">PDF Tools - Results</h1>
+
+        {% if operation == 'split' %}
+            <h2>Split PDF Results</h2>
+            <ul class="list-group mb-3">
+                {% for file in output_files %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>{{ file }}</span>
+                    <a href="{{ url_for('download_file', filename=file) }}" class="btn btn-primary">Download</a>
+                </li>
+                {% endfor %}
+            </ul>
+        {% elif operation == 'merge' %}
+            <h2>Merged PDF Result</h2>
+            <p><a href="{{ url_for('download_file', filename=output_file) }}" class="btn btn-primary">Download Merged PDF</a></p>
+        {% elif operation == 'convert' %}
+            <h2>Converted PDF Result</h2>
+            {% if conversion_choice == 'images' %}
+                <h3>Converted Images</h3>
+                <ul class="list-group mb-3">
+                    {% for file in output_files %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span>{{ file }}</span>
+                        <a href="{{ url_for('download_file', filename=file) }}" class="btn btn-primary">Download</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p><a href="{{ url_for('download_file', filename=output_file) }}" class="btn btn-primary">Download Converted {{ conversion_choice | capitalize }}</a></p>
+            {% endif %}
+        {% endif %}
+
+        <a href="/" class="btn btn-secondary">Back to PDF Tools</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

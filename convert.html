@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert PDF</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Convert PDF</h1>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <form action="/convert" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="conversion_choice">Select Conversion Type</label>
+                <select class="form-control" id="conversion_choice" name="conversion_choice" required>
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="word">PDF to Word</option>
+                    <option value="excel">PDF to Excel</option>
+                    <option value="ppt">PDF to PowerPoint</option>
+                    <option value="images">PDF to Images</option>
+                </select>
+            </div>
+            <div class="custom-file mb-3">
+                <input type="file" class="custom-file-input" id="file" name="file" accept="application/pdf" required>
+                <label class="custom-file-label" for="file">Choose PDF file...</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Upload and Convert</button>
+        </form>
+        <a href="/" class="btn btn-secondary mt-3">Back to Home</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Update file input label to show selected file name
+        $(".custom-file-input").on("change", function() {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+</body>
+</html>

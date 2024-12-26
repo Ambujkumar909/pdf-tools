@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merge PDF</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Merge PDF</h1>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <form action="/merge" method="post" enctype="multipart/form-data">
+            <div class="custom-file mb-3">
+                <input type="file" class="custom-file-input" id="files" name="files[]" multiple accept="application/pdf" required onchange="updateFileNameDisplay()">
+                <label class="custom-file-label" for="files" id="filesLabel">Choose PDF files...</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Upload and Merge</button>
+        </form>
+        <a href="/" class="btn btn-secondary mt-3">Back to Home</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        function updateFileNameDisplay() {
+            var input = document.getElementById('files');
+            var label = document.getElementById('filesLabel');
+            if (input.files.length === 0) {
+                label.innerText = 'Choose PDF files...';
+            } else if (input.files.length === 1) {
+                label.innerText = input.files[0].name;
+            } else {
+                label.innerText = input.files.length + ' files selected';
+            }
+        }
+
+        // Add event listener to enable Ctrl+A (Select All) functionality
+        document.getElementById('files').addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'a') {
+                this.files = Array.from({ length: this.files.length }, (_, i) => i);
+                updateFileNameDisplay();
+            }
+        });
+    </script>
+</body>
+</html>

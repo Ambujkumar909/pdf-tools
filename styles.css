@@ -1,0 +1,36 @@
+/* Example custom styles */
+body {
+    background-color: #f8f9fa; /* Light gray background */
+    font-family: 'Roboto', sans-serif
+}
+
+.card {
+    border: 1px solid #ced4da; /* Gray border for cards */
+    font-family: 'Roboto', sans-serif
+}
+
+.card-title {
+    color: #007bff; /* Blue title color */
+    font-family: 'Roboto', sans-serif
+}
+
+.card-text {
+    color: #6c757d; /* Dark gray text color */
+    font-family: 'Roboto', sans-serif
+}
+/* Custom styling for Learn More button */
+/* Custom styling for Learn More button */
+.btn-custom {
+    background-color: #000000; /* Black color */
+    border-color: #000000; /* Matching border color */
+    color: #ffffff; /* White text color */
+    font-family: 'Roboto', sans-serif
+}
+
+/* Optional: Hover effect */
+.btn-custom:hover {
+    background-color: #333333; /* Darker shade of black on hover */
+    border-color: #333333;
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif
+}
